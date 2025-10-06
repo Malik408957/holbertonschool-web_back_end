@@ -9,7 +9,7 @@ if __name__ == "__main__":
     db = client.logs
     collection = db.nginx
     
-    # Köhnə count() metodu ilə
+    # Köhnə count() metodu
     total_logs = collection.count()
     print("{} logs".format(total_logs))
     
