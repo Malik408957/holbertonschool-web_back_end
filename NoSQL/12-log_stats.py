@@ -9,14 +9,15 @@ if __name__ == "__main__":
     db = client.logs
     collection = db.nginx
     
-    total_logs = collection.count_documents({})
-    print(f"{total_logs} logs")
+    # Köhnə count() metodu ilə
+    total_logs = collection.count()
+    print("{} logs".format(total_logs))
     
     print("Methods:")
     methods = ["GET", "POST", "PUT", "PATCH", "DELETE"]
     for method in methods:
-        count = collection.count_documents({"method": method})
-        print(f"method {method}: {count}")
+        count = collection.find({"method": method}).count()
+        print("method {}: {}".format(method, count))
     
-    status_check = collection.count_documents({"method": "GET", "path": "/status"})
-    print(f"{status_check} status check")
+    status_check = collection.find({"method": "GET", "path": "/status"}).count()
+    print("{} status check".format(status_check))
